@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cerebrum Boost - Enhance Brain Power & Academic Excellence</title>
+    <meta name="description" content="Boost your IQ, improve academic performance, develop emotional intelligence, and avoid substance abuse. Special section for Mechatronics engineering students.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brainBlue: "#0ea5e9",
+                        brainPurple: "#8b5cf6",
+                        brainTeal: "#14b8a6",
+                        academicGold: "#f59e0b",
+                        dangerRed: "#ef4444",
+                        safeGreen: "#10b981",
+                        focusOrange: "#f97316",
+                        mechaGray: "#1e293b"
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                        'mono': ['Roboto Mono', 'monospace']
+                    },
+                    animation: {
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'float-mind': 'float-mind 6s ease-in-out infinite',
+                        'neuro-spark': 'neuro-spark 3s linear infinite',
+                        'spin-slow': 'spin 20s linear infinite',
+                        'bounce-subtle': 'bounce-subtle 2s infinite'
+                    },
+                    keyframes: {
+                        'pulse-glow': {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(14, 165, 233, 0.3)' },
+                            '50%': { boxShadow: '0 0 40px rgba(14, 165, 233, 0.6)' }
+                        },
+                        'float-mind': {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' }
+                        },
+                        'neuro-spark': {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' }
+                        },
+                        'bounce-subtle': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    },
+                    backgroundImage: {
+                        'brain-pattern': "url('https://picsum.photos/1600/900?random=1&blur=2')",
+                        'neuro-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f59e0b 50%, #10b981 75%, #0ea5e9 100%)',
+                        'academic-gradient': 'linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 50%, #14b8a6 100%)'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .neuro-bg {
+            background: linear-gradient(-45deg, #0ea5e9, #8b5cf6, #14b8a6, #f59e0b);
+            background-size: 400% 400%;
+            animation: neuro-spark 15s ease infinite;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .brain-card {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #0ea5e9, #8b5cf6) border-box;
+        }
+        
+        .brain-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.2);
+        }
+        
+        .danger-card {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border-left: 6px solid #ef4444;
+        }
+        
+        .focus-card {
+            background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
+            border-left: 6px solid #f97316;
+        }
+        
+        .emotional-card {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-left: 6px solid #3b82f6;
+        }
+        
+        .academic-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 6px solid #0ea5e9;
+        }
+        
+        .mecha-card {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border-left: 6px solid #475569;
+        }
+        
+        .iq-song {
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 50%, #c4b5fd 100%);
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #0ea5e9;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #0ea5e9; }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 font-poppins">
+    <!-- Header with Navigation -->
+    <header class="neuro-bg text-white shadow-xl sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <nav class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center animate-pulse-glow">
+                        <i class="fas fa-brain text-2xl text-brainBlue"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl md:text-3xl font-bold font-montserrat">CEREBRUM BOOST</h1>
+                        <p class="text-sm text-blue-100">Intelligence • Focus • Excellence</p>
+                    </div>
+                </div>
+                
+                <ul id="nav-list" class="flex flex-wrap gap-4 md:gap-6"></ul>
+                
+                <div class="mt-4 md:mt-0">
+                    <button id="iq-music-toggle" class="bg-white text-brainBlue px-6 py-2 rounded-full font-semibold hover:bg-blue-50 transition-colors flex items-center space-x-2">
+                        <i class="fas fa-music"></i>
+                        <span>IQ Music</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-brain-pattern opacity-10"></div>
+        <div class="container mx-auto px-4 py-16 md:py-24 relative">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-brainBlue to-brainPurple">
+                    Unlock Your <span class="typewriter">Full Mental Potential</span>
+                </h2>
+                <p class="text-xl text-gray-700 mb-8">
+                    Scientifically-proven methods to enhance cognitive abilities, improve academic performance, 
+                    develop emotional intelligence, and build a brighter future
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button id="start-assessment" class="bg-brainBlue text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-600 transition-colors hover:scale-105">
+                        <i class="fas fa-brain mr-2"></i>Start Brain Assessment
+                    </button>
+                    <button id="mecha-section" class="bg-mechaGray text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-800 transition-colors hover:scale-105">
+                        <i class="fas fa-robot mr-2"></i>Mechatronics Future
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Brain Enhancement Tools -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Brain Enhancement Cards -->
+                <section class="space-y-6">
+                    <h3 class="text-3xl font-bold text-gray-800 flex items-center">
+                        <i class="fas fa-graduation-cap text-academicGold mr-3"></i>
+                        Academic Excellence Tools
+                    </h3>
+                    <div id="academic-tools" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+                </section>
+
+                <!-- Focus Enhancement -->
+                <section class="space-y-6">
+                    <h3 class="text-3xl font-bold text-gray-800 flex items-center">
+                        <i class="fas fa-bullseye text-focusOrange mr-3"></i>
+                        Laser Focus System
+                    </h3>
+                    <div id="focus-tools" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+                </section>
+
+                <!-- Emotional Intelligence -->
+                <section class="space-y-6">
+                    <h3 class="text-3xl font-bold text-gray-800 flex items-center">
+                        <i class="fas fa-heart text-pink-500 mr-3"></i>
+                        Emotional Intelligence Advisor
+                    </h3>
+                    <div class="emotional-card rounded-xl p-6 shadow-lg">
+                        <div id="eq-questions" class="space-y-4"></div>
+                        <div id="eq-response" class="mt-6 p-4 bg-blue-50 rounded-lg hidden">
+                            <h4 class="font-bold text-lg mb-2">Advice:</h4>
+                            <p id="eq-advice" class="text-gray-700"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Substance Awareness -->
+                <section class="space-y-6">
+                    <h3 class="text-3xl font-bold text-gray-800 flex items-center">
+                        <i class="fas fa-skull-crossbones text-dangerRed mr-3"></i>
+                        Substance Abuse Education
+                    </h3>
+                    <div class="danger-card rounded-xl p-6 shadow-lg">
+                        <div id="danger-facts" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column: Interactive Features -->
+            <div class="space-y-8">
+                <!-- IQ Enhancement Music -->
+                <section class="iq-song rounded-2xl p-6 shadow-xl text-white">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-2xl font-bold">IQ Enhancement Soundscape</h3>
+                        <i class="fas fa-headphones text-2xl"></i>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-white/20 p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold">Binaural Beats (Focus)</span>
+                                <span id="music-time">00:00</span>
+                            </div>
+                            <div class="w-full bg-white/30 rounded-full h-2">
+                                <div id="music-progress" class="bg-white h-2 rounded-full w-1/3"></div>
+                            </div>
+                            <div class="flex justify-center space-x-4 mt-4">
+                                <button class="music-control p-2 rounded-full bg-white/30 hover:bg-white/50">
+                                    <i class="fas fa-step-backward"></i>
+                                </button>
+                                <button id="play-pause" class="music-control p-3 rounded-full bg-white text-brainPurple hover:scale-105">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="music-control p-2 rounded-full bg-white/30 hover:bg-white/50">
+                                    <i class="fas fa-step-forward"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="text-sm">
+                            <p>🎵 This track uses binaural beats (40Hz) to enhance focus, memory retention, and cognitive processing speed.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Q&A Assistant -->
+                <section class="bg-white rounded-2xl shadow-xl p-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Ask Brain Assistant</h3>
+                    <div id="chat-history" class="h-64 overflow-y-auto mb-4 space-y-3 p-2"></div>
+                    <div class="relative">
+                        <input type="text" id="user-question" placeholder="Ask about brain health, study tips, or career advice..." 
+                               class="w-full px-4 py-3 border-2 border-brainBlue rounded-full focus:outline-none focus:ring-2 focus:ring-brainBlue">
+                        <button id="ask-button" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-brainBlue text-white w-10 h-10 rounded-full hover:bg-blue-600">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Mechatronics Showcase -->
+                <section class="bg-mechaGray text-white rounded-2xl shadow-xl p-6">
+                    <h3 class="text-2xl font-bold mb-4">Future Mechatronics</h3>
+                    <div id="mecha-products" class="space-y-4"></div>
+                    <button id="explore-mecha" class="w-full mt-6 bg-white text-mechaGray py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-rocket mr-2"></i>Explore Future Technologies
+                    </button>
+                </section>
+            </div>
+        </div>
+
+        <!-- Mechatronics Engineering Section -->
+        <section class="mt-16 bg-gradient-to-r from-gray-900 to-mechaGray text-white rounded-3xl shadow-2xl p-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center justify-between mb-8">
+                    <div>
+                        <h2 class="text-4xl font-bold mb-4">Mechatronics & AI: Shaping Tomorrow</h2>
+                        <p class="text-gray-300 text-lg">Become the engineer who builds the future with robotics, AI, and smart systems</p>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                        <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center animate-spin-slow">
+                            <i class="fas fa-robot text-3xl text-mechaGray"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="mecha-roadmap" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold text-academicGold">Essential Skills</h3>
+                        <div id="mecha-skills" class="space-y-3"></div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-bold text-brainBlue mb-4">AI-Mechatronics Products</h3>
+                        <div id="future-products" class="space-y-4"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-16">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-12 h-12 bg-brainBlue rounded-full flex items-center justify-center">
+                            <i class="fas fa-brain text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Cerebrum Boost</h3>
+                            <p class="text-gray-400 text-sm">Since 2024</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">Enhancing human potential through science, education, and technology.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul id="footer-links" class="space-y-2"></ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Resources</h4>
+                    <ul id="resource-links" class="space-y-2"></ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Stay Updated</h4>
+                    <div class="space-y-4">
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-brainBlue transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-brainBlue transition-colors">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-brainBlue transition-colors">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                        <p class="text-sm text-gray-400">Subscribe for brain tips and study techniques</p>
+                        <div class="flex">
+                            <input type="email" placeholder="Your email" class="flex-1 px-4 py-2 rounded-l-lg text-gray-900">
+                            <button class="bg-brainBlue px-4 py-2 rounded-r-lg font-semibold hover:bg-blue-600">Join</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+                <p>© 2024 Cerebrum Boost. All rights reserved. | Scientific Advisory: Dr. Alex Chen (Neuroscience), Prof. Maria Rodriguez (Education)</p>
+                <p class="mt-2 text-sm">Disclaimer: This platform provides educational content. For medical advice, consult healthcare professionals.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Data Layer -->
+    <script>
+        // Navigation Data
+        const navigationItems = [
+            { "label": "Home", "href": "#home", "icon": "fas fa-home" },
+            { "label": "Brain Tools", "href": "#tools", "icon": "fas fa-tools" },
+            { "label": "Study Focus", "href": "#focus", "icon": "fas fa-bullseye" },
+            { "label": "EQ Advisor", "href": "#eq", "icon": "fas fa-heart" },
+            { "label": "Mechatronics", "href": "#mechatronics", "icon": "fas fa-robot" },
+            { "label": "About", "href": "#about", "icon": "fas fa-info-circle" }
+        ];
+
+        // Academic Tools
+        const academicTools = [
+            { 
+                "title": "Memory Palace Builder", 
+                "description": "Create visual memory systems for complex information retention",
+                "icon": "fas fa-landmark",
+                "color": "text-brainBlue",
+                "bgColor": "bg-blue-50",
+                "steps": ["Visualize locations", "Associate concepts", "Review regularly"]
+            },
+            { 
+                "title": "Speed Reading Trainer", 
+                "description": "Increase reading speed while maintaining comprehension",
+                "icon": "fas fa-book-reader",
+                "color": "text-brainPurple",
+                "bgColor": "bg-purple-50",
+                "steps": ["Eye movement exercises", "Chunk text practice", "Comprehension tests"]
+            },
+            { 
+                "title": "Note-taking System", 
+                "description": "Cornell method implementation for optimal information processing",
+                "icon": "fas fa-sticky-note",
+                "color": "text-brainTeal",
+                "bgColor": "bg-teal-50",
+                "steps": ["Divide page sections", "Main ideas on right", "Summarize at bottom"]
+            },
+            { 
+                "title": "Exam Simulation", 
+                "description": "Practice under real exam conditions with time pressure",
+                "icon": "fas fa-clock",
+                "color": "text-academicGold",
+                "bgColor": "bg-yellow-50",
+                "steps": ["Set timer", "No interruptions", "Post-review analysis"]
+            }
+        ];
+
+        // Focus Tools
+        const focusTools = [
+            { 
+                "title": "Pomodoro Timer", 
+                "description": "25-minute focused work sessions with 5-minute breaks",
+                "icon": "fas fa-hourglass-half",
+                "time": "25:00",
+                "active": true
+            },
+            { 
+                "title": "Digital Detox", 
+                "description": "Block distracting websites during study sessions",
+                "icon": "fas fa-mobile-alt",
+                "time": "Custom",
+                "active": false
+            },
+            { 
+                "title": "Study Environment", 
+                "description": "Optimal lighting, temperature, and noise control settings",
+                "icon": "fas fa-lightbulb",
+                "time": "Guide",
+                "active": true
+            },
+            { 
+                "title": "Mindfulness Breaks", 
+                "description": "5-minute meditation exercises between study sessions",
+                "icon": "fas fa-spa",
+                "time": "5:00",
+                "active": true
+            }
+        ];
+
+        // Emotional Intelligence Questions
+        const eqQuestions = [
+            { 
+                "question": "How do you handle criticism?", 
+                "options": ["Defensively", "Reflectively", "Ignore it", "Learn from it"],
+                "correct": 3,
+                "advice": "Constructive criticism is growth fuel. Separate emotions from feedback, extract lessons, and thank the giver."
+            },
+            { 
+                "question": "When stressed, you usually:", 
+                "options": ["Isolate yourself", "Talk to someone", "Exercise", "Get irritable"],
+                "correct": 1,
+                "advice": "Social support is crucial. Build emotional vocabulary to express feelings clearly and seek support when needed."
+            },
+            { 
+                "question": "In conflicts, you tend to:", 
+                "options": ["Avoid", "Accommodate", "Compete", "Collaborate"],
+                "correct": 3,
+                "advice": "Win-win solutions create lasting relationships. Practice active listening and validate others' perspectives."
+            }
+        ];
+
+        // Substance Dangers
+        const dangerFacts = [
+            { 
+                "fact": "Alcohol reduces hippocampus volume by 10-15% in heavy drinkers", 
+                "impact": "Memory and learning impairment",
+                "icon": "fas fa-brain",
+                "severity": "high"
+            },
+            { 
+                "fact": "Methamphetamine destroys dopamine receptors permanently", 
+                "impact": "Anhedonia (inability to feel pleasure)",
+                "icon": "fas fa-smile",
+                "severity": "critical"
+            },
+            { 
+                "fact": "Cocaine increases stroke risk by 600%", 
+                "impact": "Brain hemorrhage and cognitive decline",
+                "icon": "fas fa-heartbeat",
+                "severity": "critical"
+            },
+            { 
+                "fact": "Marijuana before age 25 reduces IQ by up to 8 points", 
+                "impact": "Permanent cognitive impairment",
+                "icon": "fas fa-user-graduate",
+                "severity": "high"
+            }
+        ];
+
+        // Mechatronics Roadmap
+        const mechaRoadmap = [
+            { 
+                "year": "2024-2025", 
+                "focus": "Core Fundamentals", 
+                "skills": ["CAD Design", "Circuit Analysis", "Programming Basics"],
+                "color": "bg-blue-600"
+            },
+            { 
+                "year": "2026-2027", 
+                "focus": "Specialization", 
+                "skills": ["Robotics", "AI Integration", "Control Systems"],
+                "color": "bg-purple-600"
+            },
+            { 
+                "year": "2028+", 
+                "focus": "Industry Innovation", 
+                "skills": ["Smart Systems", "Automation", "IoT Solutions"],
+                "color": "bg-green-600"
+            }
+        ];
+
+        // Mechatronics Skills
+        const mechaSkills = [
+            { "skill": "Python & C++", "importance": 95, "icon": "fas fa-code" },
+            { "skill": "Control Systems", "importance": 90, "icon": "fas fa-sliders-h" },
+            { "skill": "AI/ML Integration", "importance": 88, "icon": "fas fa-brain" },
+            { "skill": "3D Modeling", "importance": 85, "icon": "fas fa-cube" },
+            { "skill": "Sensor Integration", "importance": 92, "icon": "fas fa-microchip" }
+        ];
+
+        // Future Products
+        const futureProducts = [
+            { 
+                "name": "AI Surgical Robot", 
+                "description": "Self-learning surgical systems with sub-millimeter precision",
+                "image": "https://picsum.photos/400/300?random=2",
+                "impact": "Reduces surgical errors by 99%"
+            },
+            { 
+                "name": "Smart Exoskeleton", 
+                "description": "AI-powered mobility aid that learns user movement patterns",
+                "image": "https://picsum.photos/400/300?random=3",
+                "impact": "Enables paralyzed patients to walk"
+            },
+            { 
+                "name": "Autonomous Factory", 
+                "description": "Self-optimizing production lines with predictive maintenance",
+                "image": "https://picsum.photos/400/300?random=4",
+                "impact": "Increases efficiency by 300%"
+            },
+            { 
+                "name": "Neural Interface", 
+                "description": "Brain-computer interfaces for direct thought control",
+                "image": "https://picsum.photos/400/300?random=5",
+                "impact": "Revolutionizes human-machine interaction"
+            }
+        ];
+
+        // Footer Links
+        const footerLinks = [
+            { "label": "Brain Assessment", "href": "#assessment" },
+            { "label": "Study Plans", "href": "#study" },
+            { "label": "EQ Tests", "href": "#eqtest" },
+            { "label": "Career Guide", "href": "#career" }
+        ];
+
+        const resourceLinks = [
+            { "label": "Research Papers", "href": "#research" },
+            { "label": "Study Techniques", "href": "#techniques" },
+            { "label": "Mental Health", "href": "#health" },
+            { "label": "Engineering Resources", "href": "#engineering" }
+        ];
+
+        // Q&A Knowledge Base
+        const knowledgeBase = [
+            { 
+                "question": "How to improve memory?", 
+                "answer": "Use spaced repetition, create vivid associations, practice retrieval, get adequate sleep, and exercise regularly.",
+                "category": "brain"
+            },
+            { 
+                "question": "Best study techniques?", 
+                "answer": "Active recall, spaced repetition, interleaving, elaborative interrogation, and self-explanation.",
+                "category": "academic"
+            },
+            { 
+                "question": "Alcohol effect on brain?", 
+                "answer": "Disrupts neurotransmitters, damages hippocampus, impairs prefrontal cortex, reduces neurogenesis.",
+                "category": "health"
+            },
+            { 
+                "question": "Future of Mechatronics?", 
+                "answer": "Integration with AI, smart manufacturing, medical robotics, autonomous systems, and IoT networks.",
+                "category": "engineering"
+            },
+            { 
+                "question": "How to stay focused?", 
+                "answer": "Pomodoro technique, remove distractions, set clear goals, take regular breaks, practice mindfulness.",
+                "category": "focus"
+            }
+        ];
+
+        // Render Functions
+        function renderNavItem(item) {
+            return `
+                <li>
+                    <a href="${item.href}" class="flex items-center space-x-2 hover:text-blue-200 transition-colors">
+                        <i class="${item.icon}"></i>
+                        <span>${item.label}</span>
+                    </a>
+                </li>
+            `;
+        }
+
+        function renderAcademicTool(tool) {
+            return `
+                <div class="academic-card rounded-xl p-6 brain-card hover-lift">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <i class="${tool.icon} ${tool.color} text-3xl mb-2"></i>
+                            <h4 class="text-xl font-bold text-gray-800">${tool.title}</h4>
+                        </div>
+                        <button class="p-2 rounded-full ${tool.bgColor} hover:bg-opacity-80">
+                            <i class="fas fa-play ${tool.color}"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-600 mb-4">${tool.description}</p>
+                    <div class="space-y-2">
+                        ${tool.steps.map((step, index) => `
+                            <div class="flex items-center text-sm">
+                                <span class="w-6 h-6 rounded-full ${tool.bgColor} flex items-center justify-center mr-2">${index + 1}</span>
+                                <span>${step}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderFocusTool(tool) {
+            return `
+                <div class="focus-card rounded-xl p-6 brain-card hover-lift">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <i class="${tool.icon} text-focusOrange text-2xl"></i>
+                            <h4 class="text-lg font-bold text-gray-800">${tool.title}</h4>
+                        </div>
+                        <span class="px-3 py-1 ${tool.active ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'} rounded-full text-sm">${tool.time}</span>
+                    </div>
+                    <p class="text-gray-600">${tool.description}</p>
+                    <div class="mt-4">
+                        <button class="w-full py-2 ${tool.active ? 'bg-focusOrange text-white' : 'bg-gray-200 text-gray-700'} rounded-lg font-semibold hover:opacity-90 transition-opacity">
+                            ${tool.active ? 'Active' : 'Activate'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderEQQuestion(question, index) {
+            return `
+                <div class="eq-question p-4 bg-white rounded-lg shadow">
+                    <p class="font-semibold mb-3">${question.question}</p>
+                    <div class="space-y-2">
+                        ${question.options.map((option, optIndex) => `
+                            <button data-question="${index}" data-option="${optIndex}" 
+                                    class="eq-option w-full text-left p-3 rounded-lg border hover:bg-blue-50 hover:border-blue-300 transition-colors ${optIndex === question.correct ? 'correct-option' : ''}">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderDangerFact(fact) {
+            const severityColors = {
+                "high": "bg-red-100 text-red-800",
+                "critical": "bg-red-500 text-white"
+            };
+            
+            return `
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <div class="flex items-start space-x-3">
+                        <i class="${fact.icon} text-dangerRed text-xl mt-1"></i>
+                        <div>
+                            <p class="font-semibold mb-2">${fact.fact}</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-600">${fact.impact}</span>
+                                <span class="px-2 py-1 ${severityColors[fact.severity]} rounded-full text-xs font-bold">${fact.severity.toUpperCase()}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderMechaRoadmap(step) {
+            return `
+                <div class="${step.color} text-white rounded-xl p-6 transform hover:scale-105 transition-transform">
+                    <div class="text-2xl font-bold mb-2">${step.year}</div>
+                    <h4 class="text-xl font-bold mb-3">${step.focus}</h4>
+                    <div class="space-y-2">
+                        ${step.skills.map(skill => `
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2"></i>
+                                <span>${skill}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderMechaSkill(skill) {
+            return `
+                <div class="p-4 bg-gray-800 rounded-lg">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center space-x-3">
+                            <i class="${skill.icon} text-brainBlue"></i>
+                            <span class="font-semibold">${skill.skill}</span>
+                        </div>
+                        <span class="font-bold">${skill.importance}%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2">
+                        <div class="bg-brainBlue h-2 rounded-full" style="width: ${skill.importance}%"></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderFutureProduct(product) {
+            return `
+                <div class="bg-gray-800 rounded-xl overflow-hidden hover-lift">
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-bold text-lg mb-2">${product.name}</h4>
+                        <p class="text-gray-300 text-sm mb-3">${product.description}</p>
+                        <div class="flex items-center text-sm text-brainBlue">
+                            <i class="fas fa-bolt mr-2"></i>
+                            <span>${product.impact}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderFooterLink(link) {
+            return `<li><a href="${link.href}" class="text-gray-400 hover:text-white transition-colors">${link.label}</a></li>`;
+        }
+
+        function renderChatMessage(message, isBot = true) {
+            return `
+                <div class="${isBot ? 'bg-blue-50' : 'bg-gray-100'} rounded-lg p-3">
+                    <div class="flex items-center mb-1">
+                        <i class="fas fa-${isBot ? 'robot' : 'user'} ${isBot ? 'text-brainBlue' : 'text-gray-600'} mr-2"></i>
+                        <span class="font-semibold">${isBot ? 'Brain Assistant' : 'You'}</span>
+                    </div>
+                    <p class="text-gray-700">${message}</p>
+                </div>
+            `;
+        }
+
+        // DOM Injection
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation
+            const navList = document.getElementById('nav-list');
+            navList.innerHTML = navigationItems.map(renderNavItem).join('');
+            
+            // Academic Tools
+            const academicToolsContainer = document.getElementById('academic-tools');
+            academicToolsContainer.innerHTML = academicTools.map(renderAcademicTool).join('');
+            
+            // Focus Tools
+            const focusToolsContainer = document.getElementById('focus-tools');
+            focusToolsContainer.innerHTML = focusTools.map(renderFocusTool).join('');
+            
+            // EQ Questions
+            const eqQuestionsContainer = document.getElementById('eq-questions');
+            eqQuestionsContainer.innerHTML = eqQuestions.map((q, i) => renderEQQuestion(q, i)).join('');
+            
+            // Danger Facts
+            const dangerFactsContainer = document.getElementById('danger-facts');
+            dangerFactsContainer.innerHTML = dangerFacts.map(renderDangerFact).join('');
+            
+            // Mechatronics Roadmap
+            const mechaRoadmapContainer = document.getElementById('mecha-roadmap');
+            mechaRoadmapContainer.innerHTML = mechaRoadmap.map(renderMechaRoadmap).join('');
+            
+            // Mechatronics Skills
+            const mechaSkillsContainer = document.getElementById('mecha-skills');
+            mechaSkillsContainer.innerHTML = mechaSkills.map(renderMechaSkill).join('');
+            
+            // Future Products
+            const futureProductsContainer = document.getElementById('future-products');
+            futureProductsContainer.innerHTML = futureProducts.map(renderFutureProduct).join('');
+            
+            // Footer Links
+            const footerLinksContainer = document.getElementById('footer-links');
+            footerLinksContainer.innerHTML = footerLinks.map(renderFooterLink).join('');
+            
+            const resourceLinksContainer = document.getElementById('resource-links');
+            resourceLinksContainer.innerHTML = resourceLinks.map(renderFooterLink).join('');
+            
+            // Mecha Products (sidebar)
+            const mechaProductsContainer = document.getElementById('mecha-products');
+            mechaProductsContainer.innerHTML = futureProducts.slice(0, 2).map(product => `
+                <div class="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
+                    <img src="${product.image}" alt="${product.name}" class="w-16 h-16 object-cover rounded">
+                    <div>
+                        <h4 class="font-bold">${product.name}</h4>
+                        <p class="text-sm text-gray-300">${product.impact}</p>
+                    </div>
+                </div>
+            `).join('');
+            
+            // IQ Music Player
+            let musicPlaying = false;
+            let musicTime = 0;
+            const musicToggle = document.getElementById('iq-music-toggle');
+            const playPauseBtn = document.getElementById('play-pause');
+            const musicTimeElement = document.getElementById('music-time');
+            const musicProgress = document.getElementById('music-progress');
+            
+            musicToggle.addEventListener('click', () => {
+                const playerSection = musicToggle.closest('.iq-song');
+                playerSection.classList.toggle('bg-brainPurple');
+                playerSection.classList.toggle('bg-brainBlue');
+                
+                if (!musicPlaying) {
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    musicPlaying = true;
+                    
+                    // Simulate music playback
+                    const musicInterval = setInterval(() => {
+                        if (musicPlaying) {
+                            musicTime++;
+                            const minutes = Math.floor(musicTime / 60).toString().padStart(2, '0');
+                            const seconds = (musicTime % 60).toString().padStart(2, '0');
+                            musicTimeElement.textContent = `${minutes}:${seconds}`;
+                            musicProgress.style.width = `${(musicTime % 300) / 3}%`;
+                        } else {
+                            clearInterval(musicInterval);
+                        }
+                    }, 1000);
+                } else {
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    musicPlaying = false;
+                }
+            });
+            
+            playPauseBtn.addEventListener('click', () => {
+                musicPlaying = !musicPlaying;
+                playPauseBtn.innerHTML = musicPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+            });
+            
+            // EQ Advisor
+            document.querySelectorAll('.eq-option').forEach(button => {
+                button.addEventListener('click', function() {
+                    const questionIndex = parseInt(this.getAttribute('data-question'));
+                    const optionIndex = parseInt(this.getAttribute('data-option'));
+                    const question = eqQuestions[questionIndex];
+                    
+                    // Show advice
+                    const eqResponse = document.getElementById('eq-response');
+                    const eqAdvice = document.getElementById('eq-advice');
+                    
+                    eqAdvice.textContent = question.advice;
+                    eqResponse.classList.remove('hidden');
+                    
+                    // Highlight correct answer
+                    document.querySelectorAll(`.eq-option[data-question="${questionIndex}"]`).forEach(opt => {
+                        opt.classList.remove('bg-green-100', 'border-green-300', 'bg-red-100', 'border-red-300');
+                        const optIdx = parseInt(opt.getAttribute('data-option'));
+                        if (optIdx === question.correct) {
+                            opt.classList.add('bg-green-100', 'border-green-300');
+                        } else if (optIdx === optionIndex && optIdx !== question.correct) {
+                            opt.classList.add('bg-red-100', 'border-red-300');
+                        }
+                    });
+                });
+            });
+            
+            // Q&A Chat
+            const chatHistory = document.getElementById('chat-history');
+            const userQuestion = document.getElementById('user-question');
+            const askButton = document.getElementById('ask-button');
+            
+            // Initial bot message
+            chatHistory.innerHTML = renderChatMessage("Hello! I'm your Brain Assistant. Ask me about study techniques, brain health, emotional intelligence, or Mechatronics engineering.");
+            
+            function askQuestion() {
+                const question = userQuestion.value.trim();
+                if (!question) return;
+                
+                // Add user message
+                chatHistory.innerHTML += renderChatMessage(question, false);
+                
+                // Find best answer
+                let bestAnswer = "I'm not sure about that. Could you rephrase or ask about study techniques, brain enhancement, emotional intelligence, or Mechatronics engineering?";
+                let bestScore = 0;
+                
+                for (const kb of knowledgeBase) {
+                    const score = calculateSimilarity(question.toLowerCase(), kb.question.toLowerCase());
+                    if (score > bestScore) {
+                        bestScore = score;
+                        bestAnswer = kb.answer;
+                    }
+                }
+                
+                // Simulate thinking delay
+                setTimeout(() => {
+                    chatHistory.innerHTML += renderChatMessage(bestAnswer);
+                    chatHistory.scrollTop = chatHistory.scrollHeight;
+                }, 1000);
+                
+                userQuestion.value = '';
+            }
+            
+            function calculateSimilarity(str1, str2) {
+                const words1 = str1.split(' ');
+                const words2 = str2.split(' ');
+                const intersection = words1.filter(word => words2.includes(word));
+                return intersection.length / Math.max(words1.length, words2.length);
+            }
+            
+            askButton.addEventListener('click', askQuestion);
+            userQuestion.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') askQuestion();
+            });
+            
+            // Brain Assessment
+            document.getElementById('start-assessment').addEventListener('click', () => {
+                chatHistory.innerHTML += renderChatMessage("Starting brain assessment... Please answer these 5 questions about your cognitive habits.");
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+                
+                setTimeout(() => {
+                    chatHistory.innerHTML += renderChatMessage("1. How many hours of quality sleep do you get?");
+                    chatHistory.innerHTML += renderChatMessage("2. Do you exercise regularly (at least 30 min, 3x/week)?");
+                    chatHistory.innerHTML += renderChatMessage("3. How often do you learn something new/challenging?");
+                    chatHistory.innerHTML += renderChatMessage("4. Do you practice mindfulness or meditation?");
+                    chatHistory.innerHTML += renderChatMessage("5. What's your daily screen time for leisure?");
+                    
+                    setTimeout(() => {
+                        chatHistory.innerHTML += renderChatMessage("Based on typical patterns, I recommend: 1) 7-9 hours sleep, 2) Regular cardio, 3) Daily learning sessions, 4) 10-min meditation, 5) Limit leisure screens to 2 hours.");
+                    }, 2000);
+                    
+                    chatHistory.scrollTop = chatHistory.scrollHeight;
+                }, 1500);
+            });
+            
+            // Explore Mechatronics
+            document.getElementById('explore-mecha').addEventListener('click', () => {
+                const mechaSection = document.querySelector('.bg-gradient-to-r');
+                mechaSection.scrollIntoView({ behavior: 'smooth' });
+                
+                // Add notification
+                chatHistory.innerHTML += renderChatMessage("Opening Mechatronics Engineering section. This field combines mechanical, electrical, and computer engineering with AI - the future of automation!");
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+            });
+            
+            // Navigation delegation
+            document.addEventListener('click', function(event) {
+                const link = event.target.closest('a[href^="#"]');
+                if (!link) return;
+                event.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
