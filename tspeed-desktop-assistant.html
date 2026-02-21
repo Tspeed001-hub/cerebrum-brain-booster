@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tspeed - Your Interactive Desktop Assistant</title>
+    <meta name="description" content="Tspeed is an intelligent desktop assistant that helps you manage programs, webpages, and interact through voice and AI">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2563eb",
+                        secondary: "#7c3aed",
+                        accent: "#f59e0b",
+                        dark: "#1e293b",
+                        light: "#f8fafc"
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'mono': ['Roboto Mono', 'monospace']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'blink': 'blink 1s step-end infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        blink: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .assistant-avatar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+        .code-block {
+            background: #1e293b;
+            border-left: 4px solid #f59e0b;
+        }
+        .voice-wave {
+            background: linear-gradient(90deg, 
+                rgba(37, 99, 235, 0.1) 0%, 
+                rgba(37, 99, 235, 0.3) 25%, 
+                rgba(37, 99, 235, 0.5) 50%, 
+                rgba(37, 99, 235, 0.3) 75%, 
+                rgba(37, 99, 235, 0.1) 100%);
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50 font-inter text-gray-800">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="assistant-avatar w-16 h-16 rounded-full flex items-center justify-center animate-float">
+                        <i class="fas fa-robot text-3xl text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl md:text-4xl font-bold">Tspeed</h1>
+                        <p class="text-blue-100">Your Intelligent Desktop Assistant</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-full">
+                        <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                        <span class="font-medium">System Ready</span>
+                    </div>
+                    <button id="voice-toggle" class="bg-white text-primary px-6 py-2 rounded-full font-semibold hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-microphone mr-2"></i>Voice Mode
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Panel: Assistant Interface -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Assistant Chat Interface -->
+                <section class="bg-white rounded-2xl shadow-xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-dark">Interactive Assistant</h2>
+                        <div class="flex space-x-2">
+                            <button class="p-2 text-gray-500 hover:text-primary">
+                                <i class="fas fa-robot"></i>
+                            </button>
+                            <button class="p-2 text-gray-500 hover:text-primary">
+                                <i class="fas fa-brain"></i>
+                            </button>
+                            <button class="p-2 text-gray-500 hover:text-primary">
+                                <i class="fas fa-cog"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Chat Display -->
+                    <div id="chat-display" class="h-96 overflow-y-auto mb-6 p-4 bg-gray-50 rounded-lg space-y-4">
+                        <!-- Messages will be injected here -->
+                    </div>
+                    
+                    <!-- Voice Visualization -->
+                    <div class="mb-6">
+                        <div class="voice-wave h-4 rounded-full mb-2 animate-pulse-slow"></div>
+                        <div class="flex justify-between text-sm text-gray-500">
+                            <span>Listening...</span>
+                            <span id="voice-level" class="font-mono">Level: 72%</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Input Controls -->
+                    <div class="flex space-x-4">
+                        <div class="flex-1 relative">
+                            <input type="text" id="user-input" placeholder="Type your command or question here..." 
+                                   class="w-full px-6 py-4 border-2 border-gray-200 rounded-full focus:border-primary focus:ring-2 focus:ring-blue-100 outline-none">
+                            <button class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-primary">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <button id="voice-control" class="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center hover-lift">
+                            <i class="fas fa-microphone text-2xl"></i>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- System Control Panel -->
+                <section class="bg-white rounded-2xl shadow-xl p-6">
+                    <h2 class="text-2xl font-bold text-dark mb-6">System Control Panel</h2>
+                    <div id="control-grid" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <!-- Controls will be injected here -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Panel: Status & Integration -->
+            <div class="space-y-8">
+                <!-- Status Panel -->
+                <section class="bg-white rounded-2xl shadow-xl p-6">
+                    <h2 class="text-2xl font-bold text-dark mb-6">System Status</h2>
+                    <div id="status-indicators" class="space-y-4">
+                        <!-- Status items will be injected here -->
+                    </div>
+                    
+                    <div class="mt-8 pt-6 border-t border-gray-100">
+                        <h3 class="font-semibold text-gray-700 mb-3">Arduino Robot Integration</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-600">Robot Status</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Connected</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-600">Voice Synthesis</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Active</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-600">Motion Control</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Ready</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Quick Actions -->
+                <section class="bg-white rounded-2xl shadow-xl p-6">
+                    <h2 class="text-2xl font-bold text-dark mb-6">Quick Actions</h2>
+                    <div id="quick-actions" class="grid grid-cols-2 gap-4">
+                        <!-- Quick actions will be injected here -->
+                    </div>
+                </section>
+
+                <!-- Integration Panel -->
+                <section class="bg-white rounded-2xl shadow-xl p-6">
+                    <h2 class="text-2xl font-bold text-dark mb-6">Integration Status</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                    <i class="fab fa-python text-yellow-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Python Scripts</h4>
+                                    <p class="text-sm text-gray-500">12 active processes</p>
+                                </div>
+                            </div>
+                            <div class="text-green-600">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-database text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">JSON & Pandas</h4>
+                                    <p class="text-sm text-gray-500">Data processing ready</p>
+                                </div>
+                            </div>
+                            <div class="text-green-600">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-microchip text-red-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Arduino</h4>
+                                    <p class="text-sm text-gray-500">Robot interface active</p>
+                                </div>
+                            </div>
+                            <div class="text-green-600">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Code Examples -->
+        <section class="mt-12 bg-dark text-white rounded-2xl shadow-xl p-8">
+            <h2 class="text-2xl font-bold mb-6">Integration Examples</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="code-block p-6 rounded-lg">
+                    <h3 class="text-lg font-semibold mb-3 text-accent">Python Automation</h3>
+                    <pre class="font-mono text-sm text-gray-300 overflow-x-auto">
+<span class="text-green-400">import</span> subprocess
+<span class="text-green-400">import</span> json
+<span class="text-green-400">import</span> pandas as pd
+
+<span class="text-blue-400">class</span> <span class="text-yellow-300">TspeedAssistant</span>:
+    <span class="text-blue-400">def</span> <span class="text-yellow-300">__init__</span>(<span class="text-purple-400">self</span>):
+        <span class="text-purple-400">self</span>.programs = <span class="text-purple-400">self</span>.load_programs()
+    
+    <span class="text-blue-400">def</span> <span class="text-yellow-300">open_program</span>(<span class="text-purple-400">self</span>, program_name):
+        <span class="text-gray-500"># Open system programs</span>
+        <span class="text-blue-400">pass</span>
+    
+    <span class="text-blue-400">def</span> <span class="text-yellow-300">process_data</span>(<span class="text-purple-400">self</span>, data_file):
+        <span class="text-gray-500"># Pandas data processing</span>
+        df = pd.read_json(data_file)
+        <span class="text-green-400">return</span> df.describe()</pre>
+                </div>
+                
+                <div class="code-block p-6 rounded-lg">
+                    <h3 class="text-lg font-semibold mb-3 text-accent">Arduino Interface</h3>
+                    <pre class="font-mono text-sm text-gray-300 overflow-x-auto">
+<span class="text-green-400">#include</span> <span class="text-yellow-300">&lt;Servo.h&gt;</span>
+<span class="text-green-400">#include</span> <span class="text-yellow-300">&lt;SoftwareSerial.h&gt;</span>
+
+<span class="text-blue-400">SoftwareSerial</span> bt(<span class="text-purple-400">10</span>, <span class="text-purple-400">11</span>); <span class="text-gray-500">// RX, TX</span>
+<span class="text-blue-400">Servo</span> headServo;
+<span class="text-blue-400">Servo</span> armServo;
+
+<span class="text-blue-400">void</span> <span class="text-yellow-300">setup</span>() {
+    Serial.begin(<span class="text-purple-400">9600</span>);
+    bt.begin(<span class="text-purple-400">9600</span>);
+    headServo.attach(<span class="text-purple-400">9</span>);
+    armServo.attach(<span class="text-purple-400">8</span>);
+}
+
+<span class="text-blue-400">void</span> <span class="text-yellow-300">loop</span>() {
+    <span class="text-blue-400">if</span> (bt.available()) {
+        <span class="text-blue-400">String</span> command = bt.readString();
+        processCommand(command);
+    }
+}</pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white mt-12">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-robot text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Tspeed Assistant</h3>
+                            <p class="text-gray-400">Version 2.1.0 • AI-Powered Desktop Helper</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-python text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fas fa-code text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fas fa-book text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400 text-sm">
+                <p>© 2024 Tspeed Assistant. Interactive AI assistant for desktop automation, web control, and Arduino-based robotics.</p>
+                <p class="mt-2">Capabilities: Program Control • Web Automation • Data Processing • Voice Interaction • Robot Integration</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script -->
+    <script>
+        // Data Layer
+        const chatMessages = [
+            { "sender": "assistant", "message": "Hello! I'm Tspeed, your intelligent desktop assistant. How can I help you today?", "time": "10:00 AM" },
+            { "sender": "assistant", "message": "I can help you with: opening programs, browsing webpages, data analysis with pandas, and controlling your Arduino robot.", "time": "10:01 AM" },
+            { "sender": "user", "message": "Open my browser and search for AI trends", "time": "10:02 AM" },
+            { "sender": "assistant", "message": "Opening Chrome and searching for 'latest AI trends 2024'...", "time": "10:02 AM" }
+        ];
+
+        const systemControls = [
+            { "icon": "fas fa-desktop", "label": "Open Program", "color": "bg-blue-100 text-blue-600", "action": "openProgram" },
+            { "icon": "fas fa-globe", "label": "Browse Web", "color": "bg-green-100 text-green-600", "action": "browseWeb" },
+            { "icon": "fas fa-chart-line", "label": "Data Analysis", "color": "bg-purple-100 text-purple-600", "action": "analyzeData" },
+            { "icon": "fas fa-file-csv", "label": "JSON/Pandas", "color": "bg-yellow-100 text-yellow-600", "action": "processData" },
+            { "icon": "fas fa-microchip", "label": "Arduino Control", "color": "bg-red-100 text-red-600", "action": "arduinoControl" },
+            { "icon": "fas fa-robot", "label": "Robot Mode", "color": "bg-indigo-100 text-indigo-600", "action": "robotMode" },
+            { "icon": "fas fa-volume-up", "label": "Voice Chat", "color": "bg-pink-100 text-pink-600", "action": "voiceChat" },
+            { "icon": "fas fa-code", "label": "Script Editor", "color": "bg-gray-100 text-gray-600", "action": "openScript" },
+            { "icon": "fas fa-cogs", "label": "Settings", "color": "bg-teal-100 text-teal-600", "action": "openSettings" }
+        ];
+
+        const statusItems = [
+            { "label": "Python Integration", "value": "Active", "status": "success", "icon": "fab fa-python" },
+            { "label": "Web Automation", "value": "Ready", "status": "success", "icon": "fas fa-spider" },
+            { "label": "Data Processing", "value": "Idle", "status": "warning", "icon": "fas fa-database" },
+            { "label": "Voice Recognition", "value": "Listening", "status": "success", "icon": "fas fa-microphone" },
+            { "label": "Arduino Connection", "value": "Connected", "status": "success", "icon": "fas fa-microchip" },
+            { "label": "Robot Sensors", "value": "Calibrating", "status": "info", "icon": "fas fa-thermometer-half" }
+        ];
+
+        const quickActions = [
+            { "icon": "fas fa-search", "label": "Web Search", "command": "search: " },
+            { "icon": "fas fa-file-excel", "label": "Process CSV", "command": "process csv:" },
+            { "icon": "fas fa-play", "label": "Run Script", "command": "run script:" },
+            { "icon": "fas fa-baby", "label": "Baby Mode", "command": "activate baby mode" },
+            { "icon": "fas fa-gamepad", "label": "Teen Mode", "command": "activate teen mode" },
+            { "icon": "fas fa-graduation-cap", "label": "Youth Mode", "command": "activate youth mode" }
+        ];
+
+        const interactionModes = [
+            { "mode": "Baby", "description": "Gentle voice, simple responses, educational content" },
+            { "mode": "Teen", "description": "Interactive learning, games, social media integration" },
+            { "mode": "Youth", "description": "Productivity tools, career guidance, advanced automation" }
+        ];
+
+        // Render Functions
+        function renderChatMessage(message) {
+            const isAssistant = message.sender === "assistant";
+            return `
+                <div class="flex ${isAssistant ? "justify-start" : "justify-end"}">
+                    <div class="max-w-[80%] ${isAssistant ? "bg-blue-50" : "bg-primary"} ${isAssistant ? "text-gray-800" : "text-white"} rounded-2xl p-4 ${isAssistant ? "rounded-tl-none" : "rounded-tr-none"}">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <div class="w-6 h-6 ${isAssistant ? "bg-blue-100" : "bg-blue-200"} rounded-full flex items-center justify-center">
+                                <i class="${isAssistant ? "fas fa-robot" : "fas fa-user"} ${isAssistant ? "text-blue-600" : "text-white"} text-xs"></i>
+                            </div>
+                            <span class="text-sm font-medium">${isAssistant ? "Tspeed" : "You"}</span>
+                            <span class="text-xs opacity-75">${message.time}</span>
+                        </div>
+                        <p>${message.message}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderControlItem(control) {
+            return `
+                <button class="control-item ${control.color} rounded-xl p-4 text-center hover-lift transition-all duration-300 hover:shadow-md" data-action="${control.action}">
+                    <i class="${control.icon} text-2xl mb-3"></i>
+                    <div class="font-semibold">${control.label}</div>
+                </button>
+            `;
+        }
+
+        function renderStatusItem(item) {
+            const statusColors = {
+                "success": "bg-green-100 text-green-800",
+                "warning": "bg-yellow-100 text-yellow-800",
+                "info": "bg-blue-100 text-blue-800",
+                "error": "bg-red-100 text-red-800"
+            };
+            
+            return `
+                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                    <div class="flex items-center space-x-3">
+                        <i class="${item.icon} text-gray-600"></i>
+                        <span class="font-medium">${item.label}</span>
+                    </div>
+                    <span class="px-3 py-1 ${statusColors[item.status]} rounded-full text-sm font-medium">${item.value}</span>
+                </div>
+            `;
+        }
+
+        function renderQuickAction(action) {
+            return `
+                <button class="quick-action bg-gray-50 rounded-lg p-4 text-center hover:bg-gray-100 transition-colors" data-command="${action.command}">
+                    <i class="${action.icon} text-xl mb-2 text-primary"></i>
+                    <div class="font-medium text-sm">${action.label}</div>
+                </button>
+            `;
+        }
+
+        // DOM Injection
+        document.addEventListener("DOMContentLoaded", function() {
+            // Render chat messages
+            const chatDisplay = document.getElementById("chat-display");
+            chatDisplay.innerHTML = chatMessages.map(renderChatMessage).join("");
+            
+            // Render system controls
+            const controlGrid = document.getElementById("control-grid");
+            controlGrid.innerHTML = systemControls.map(renderControlItem).join("");
+            
+            // Render status indicators
+            const statusIndicators = document.getElementById("status-indicators");
+            statusIndicators.innerHTML = statusItems.map(renderStatusItem).join("");
+            
+            // Render quick actions
+            const quickActionsContainer = document.getElementById("quick-actions");
+            quickActionsContainer.innerHTML = quickActions.map(renderQuickAction).join("");
+            
+            // Voice level animation
+            const voiceLevelElement = document.getElementById("voice-level");
+            let voiceLevel = 70;
+            setInterval(() => {
+                voiceLevel = 65 + Math.random() * 20;
+                voiceLevelElement.textContent = `Level: ${Math.round(voiceLevel)}%`;
+            }, 1000);
+            
+            // Interactive voice toggle
+            const voiceToggle = document.getElementById("voice-toggle");
+            let voiceActive = true;
+            voiceToggle.addEventListener("click", () => {
+                voiceActive = !voiceActive;
+                voiceToggle.innerHTML = voiceActive 
+                    ? '<i class="fas fa-microphone mr-2"></i>Voice Active' 
+                    : '<i class="fas fa-microphone-slash mr-2"></i>Voice Muted';
+                voiceToggle.classList.toggle("bg-white");
+                voiceToggle.classList.toggle("bg-gray-200");
+            });
+            
+            // Control panel interactions
+            document.querySelectorAll(".control-item").forEach(button => {
+                button.addEventListener("click", function() {
+                    const action = this.getAttribute("data-action");
+                    const actionLabels = {
+                        "openProgram": "Opening program selector...",
+                        "browseWeb": "Launching web browser...",
+                        "analyzeData": "Starting data analysis with pandas...",
+                        "processData": "Processing JSON data...",
+                        "arduinoControl": "Connecting to Arduino robot...",
+                        "robotMode": "Activating robot interaction mode...",
+                        "voiceChat": "Voice chat activated!",
+                        "openScript": "Opening Python script editor...",
+                        "openSettings": "Opening settings panel..."
+                    };
+                    
+                    // Add response to chat
+                    const newMessage = {
+                        sender: "assistant",
+                        message: actionLabels[action] || "Processing your request...",
+                        time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+                    };
+                    
+                    chatDisplay.innerHTML += renderChatMessage(newMessage);
+                    chatDisplay.scrollTop = chatDisplay.scrollHeight;
+                    
+                    // Visual feedback
+                    this.classList.add("scale-95");
+                    setTimeout(() => this.classList.remove("scale-95"), 300);
+                });
+            });
+            
+            // Quick action handling
+            document.querySelectorAll(".quick-action").forEach(button => {
+                button.addEventListener("click", function() {
+                    const command = this.getAttribute("data-command");
+                    const userInput = document.getElementById("user-input");
+                    userInput.value = command;
+                    userInput.focus();
+                    
+                    // Visual feedback
+                    this.classList.add("ring-2", "ring-primary");
+                    setTimeout(() => this.classList.remove("ring-2", "ring-primary"), 500);
+                });
+            });
+            
+            // Voice control
+            const voiceControl = document.getElementById("voice-control");
+            let isListening = false;
+            voiceControl.addEventListener("click", function() {
+                isListening = !isListening;
+                
+                if (isListening) {
+                    this.classList.remove("bg-primary");
+                    this.classList.add("bg-accent");
+                    this.innerHTML = '<i class="fas fa-microphone-alt text-2xl"></i>';
+                    
+                    // Add listening message
+                    const newMessage = {
+                        sender: "assistant",
+                        message: "I'm listening... Speak your command clearly.",
+                        time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+                    };
+                    chatDisplay.innerHTML += renderChatMessage(newMessage);
+                    chatDisplay.scrollTop = chatDisplay.scrollHeight;
+                } else {
+                    this.classList.remove("bg-accent");
+                    this.classList.add("bg-primary");
+                    this.innerHTML = '<i class="fas fa-microphone text-2xl"></i>';
+                }
+            });
+            
+            // User input handling
+            const userInput = document.getElementById("user-input");
+            userInput.addEventListener("keypress", function(e) {
+                if (e.key === "Enter" && this.value.trim()) {
+                    const userMessage = {
+                        sender: "user",
+                        message: this.value,
+                        time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+                    };
+                    
+                    chatDisplay.innerHTML += renderChatMessage(userMessage);
+                    
+                    // Simulate AI response
+                    setTimeout(() => {
+                        const responses = [
+                            "Processing your request... Opening relevant applications.",
+                            "Analyzing command... Executing through Python automation.",
+                            "Connecting to Arduino interface... Robot is responding.",
+                            "Processing data with pandas... Results will be displayed shortly.",
+                            "Searching the web for relevant information...",
+                            "Activating interactive mode for user engagement."
+                        ];
+                        
+                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                        const aiMessage = {
+                            sender: "assistant",
+                            message: randomResponse,
+                            time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+                        };
+                        
+                        chatDisplay.innerHTML += renderChatMessage(aiMessage);
+                        chatDisplay.scrollTop = chatDisplay.scrollHeight;
+                    }, 1000);
+                    
+                    this.value = "";
+                }
+            });
+            
+            // Simulate voice input for demo
+            setTimeout(() => {
+                const demoMessage = {
+                    sender: "assistant",
+                    message: "I can interact with all ages! Baby mode: gentle learning. Teen mode: games & social. Youth mode: productivity tools. Which mode would you like to try?",
+                    time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+                };
+                chatDisplay.innerHTML += renderChatMessage(demoMessage);
+                chatDisplay.scrollTop = chatDisplay.scrollHeight;
+            }, 2000);
+            
+            // Navigation delegation
+            document.addEventListener("click", function(event) {
+                const link = event.target.closest("a[href^='#']");
+                if (!link) return;
+                event.preventDefault();
+                const target = document.querySelector(link.getAttribute("href"));
+                if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+        });
+    </script>
+</body>
+</html>
